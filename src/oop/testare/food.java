@@ -39,7 +39,7 @@ public class food extends product {
                                     amount = scan.next(); //scan amount
                                     System.out.println(amount);
                                     String[] amount2 = amount.split(","); //Dela upp beloppet på basis av
-                                    int totalAmount = (Integer.parseInt(amount2[0]) * Integer.parseInt(amount2[2])); //kalkyl total belopp
+                                    int totalAmount = (Integer.parseInt(amount2[0]) * Integer.parseInt(amount2[2])); //räkna total belopp
                                     if (totalAmount == 30) { //Kontrollera om belopppet är lika med eller inte
                                         
                                         if (ob.updateUserMoney(Integer.parseInt(amount2[2]), Integer.parseInt(amount2[0]))) {
