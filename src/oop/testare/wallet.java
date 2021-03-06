@@ -10,6 +10,7 @@ package oop.testare;
  * @author preec
  */
 public class wallet {
+    //Skapa variabel för hela nummer
     static int denomination1;
     static int denomination5;
     static int denomination10;
@@ -21,6 +22,8 @@ public class wallet {
         denomination10 = 10;
     }
     //Updatera användarens pengar
+    //Anvädare kan välja att betala mellan 1x10, 5x10 eller 10x10 £
+    //Vid köp av produkt pengar minskar 
     boolean updateUserMoney(int denomination, int numOfDenomination){
         if (denomination == 1){
             denomination1 -= numOfDenomination;
