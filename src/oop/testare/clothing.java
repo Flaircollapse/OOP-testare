@@ -6,24 +6,35 @@
 package oop.testare;
 
 import java.util.Scanner;
+import static oop.testare.menu.menu;
 
 /**
  *
  * @author preec
  */
 //clothing klass extends från product klass för att implementera product klass metoder
-public class clothing extends product {
+public class clothing extends product implements productfunktions {
     Scanner scan = new Scanner(System.in);
-    @Override
-    void Description() {
-        System.out.println("Here is Dress to Worn");
-        System.out.println("Description:");
-        System.out.println("This item contain Shirt and Trauser.");
-        System.out.println("Item cost is 60£.");
+    
+     public static clothing dress = new clothing("Dress", "Shirt and Trauser", 60);
+    
+     public clothing(String name, String description, double cost) {
+        super(name, description, cost);
     }
 
+
+    
     @Override
-    void Buy() {
+    public void Description() {
+        System.out.println(name);
+        System.out.println(description);
+        System.out.println(cost);
+        Buy();
+    }
+
+    
+    @Override
+    public void Buy() {
        char choice2;
         System.out.println("Do you want to buy? Enter y OR Back to main menu? Enter m: ");
         choice2 = scan.next().charAt(0);//scan choice för att köpa eller tillbaka till main menu
@@ -40,14 +51,14 @@ public class clothing extends product {
                                     System.out.println(amount);
                                     String[] amount2 = amount.split(","); //Dela upp beloppet på basis av
                                     int totalAmount = (Integer.parseInt(amount2[0]) * Integer.parseInt(amount2[2])); //kalkyl total belopp
-                                    if (totalAmount == 60) { //Kontrollera om belopppet är lika med eller inte
+                                    if (totalAmount == cost) { //Kontrollera om belopppet är lika med eller inte
                                         
                                         if (ob.updateUserMoney(Integer.parseInt(amount2[2]), Integer.parseInt(amount2[0]))) {
                                             System.out.println("Total price paid by you is: " + totalAmount);
                                             Use(); //anropa use metod
                                         }
                                         
-                                            OOPTestare.menu(); //Anropa menu metod för att visa menu
+                                            menu(); //Anropa menu metod för att visa menu
                                     }else {
                                         System.out.println("Enter correct amount");
                                     }
@@ -58,7 +69,7 @@ public class clothing extends product {
                         }
                         case 'm':
                         {
-                            OOPTestare.menu(); //Gå tillbaka till menu
+                            menu(); //Gå tillbaka till menu
                         }
                         default:
                         {
@@ -69,7 +80,7 @@ public class clothing extends product {
     }
 
     @Override
-    void Use() {
-        System.out.println("Product has been worn");
+    public void Use() {
+        System.out.println("You just wear " +name);
     }
 }
