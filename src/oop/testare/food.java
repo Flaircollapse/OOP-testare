@@ -6,24 +6,34 @@
 package oop.testare;
 
 import java.util.Scanner;
+import static oop.testare.menu.menu;
 
 /**
  *
  * @author preec
  */
 //food klass extends från product klass för att implementera product klass metoder
-public class food extends product {
+public class food extends product implements productfunktions {
     Scanner scan = new Scanner(System.in);
+    
+    public static food chicken = new food("Chicken", "Delicious grilled chicken", 30);
+    
+    public food(String name, String description, double cost) {
+        super(name, description, cost);
+    }
+
+
+    
     @Override
-    void Description() {
-        System.out.println("Here is Chicken to eat");
-        System.out.println("Description:");
-        System.out.println("This item contain grilled chicken.");
-        System.out.println("Item cost is 30£.");
+    public void Description() {
+        System.out.println(name);
+        System.out.println(description);
+        System.out.println(cost);
+        Buy();
     }
 
     @Override
-    void Buy() {
+    public void Buy() {
        char choice2;
         System.out.println("Do you want to buy? Enter y OR Back to main menu? Enter m: ");
         choice2 = scan.next().charAt(0);//scan choice
@@ -40,14 +50,14 @@ public class food extends product {
                                     System.out.println(amount);
                                     String[] amount2 = amount.split(","); //Dela upp beloppet på basis av
                                     int totalAmount = (Integer.parseInt(amount2[0]) * Integer.parseInt(amount2[2])); //räkna total belopp
-                                    if (totalAmount == 30) { //Kontrollera om belopppet är lika med eller inte
+                                    if (totalAmount == cost) { //Kontrollera om belopppet är lika med eller inte
                                         
                                         if (ob.updateUserMoney(Integer.parseInt(amount2[2]), Integer.parseInt(amount2[0]))) {
                                             System.out.println("Total price paid by you is: " + totalAmount);
                                             Use(); //anropa use metod
                                         }
                                         
-                                            OOPTestare.menu(); //Gå tillbaka till menu
+                                            menu(); //Gå tillbaka till menu
                                     }else {
                                         System.out.println("Enter correct amount");
                                     }
@@ -58,7 +68,7 @@ public class food extends product {
                         }
                         case 'm':
                         {
-                            OOPTestare.menu(); //Gå tillbaka till menu
+                            menu(); //Gå tillbaka till menu
                         }
                         default:
                         {
@@ -69,8 +79,8 @@ public class food extends product {
     }
 
     @Override
-    void Use() {
-        System.out.println("Product has been eaten");
+    public void Use() {
+        System.out.println("You eat the " +name);
     }
     
 }
