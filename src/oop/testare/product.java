@@ -12,8 +12,11 @@ package oop.testare;
 public abstract class product {
     String name, description;
     double cost;
-    //Skapa metod
-    abstract void Description();
-    abstract void Buy();
-    abstract void Use();
+    //parametrar till initiering av varor
+    public product(String name, String description, double cost) {
+        this.name = name;
+        this.description = description;
+        this.cost = cost;
+    }
+
 }
